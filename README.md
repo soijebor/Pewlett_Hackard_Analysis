@@ -14,7 +14,7 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
 ## Resources
 
 * Data Source: departments.csv, employees.csv, dept_emp.csv, dept_manager.csv, salaries.csv and titles.csv
-* Software: SQL (pgAdmin 4)
+* Software: PostgreSQL11.8 (pgAdmin 4.23)
 
 ## Summary
 
