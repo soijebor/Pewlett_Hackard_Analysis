@@ -27,7 +27,7 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
   
   In this analysis, I created a total of 3 tables and exported them as csv files;
   
-  * no_of_retiring_emp.csv - contains the number of employees who are about to retire 
+  * retiring_emp.csv - contains the number of employees who are about to retire 
   * retiring_emp_no_dup.csv - contains the number of employees who are about to retire after removing duplicates
   * retiring_emp_no_dup_count.csv - contains the number of employees who are about to retire grouped by title
 
