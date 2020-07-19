@@ -39,4 +39,4 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
   * mentorship_eligibility_no_dup.csv - contains the number of employees eligible for mentorship program after I removed duplicates
   * mentorship_eligibility_no_dup_count.csv - contains number of employees eligible for mentorship program grouped by title
 
- In conclusion, I will recoomend Pewlett Hackard to start hiring and increase the age group for mentorship program as about 50% of their employees are about to retire and this mentorship program will help prep new hires to take over the open positions.
+ In conclusion, I will recommend Pewlett Hackard to start hiring and increase the age group for mentorship program as about 50% of their employees are about to retire and this mentorship program will help prep new hires to take over the open positions. Just employees born in 1965 might not be enough mentors to help these new hires.
