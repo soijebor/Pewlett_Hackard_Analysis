@@ -17,8 +17,9 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
 * Software: PostgreSQL11.8 (pgAdmin 4.23)
 
 ## Summary
+ * Queries for this module challenge is https://github.com/soijebor/Pewlett_Hackard_Analysis/blob/master/Queries/schema.sql 
 
- A copy of the ERD I created when mapping out the database;
+ * A copy of the ERD I created when mapping out the database;
  
  ![ERD](https://github.com/soijebor/Pewlett_Hackard_Analysis/blob/master/Images/EmployeeDB.png)
 
