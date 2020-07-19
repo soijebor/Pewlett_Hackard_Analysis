@@ -27,9 +27,10 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
   
   In this analysis, I created a total of 3 tables and exported them as csv files;
   
-  * no_of_retiring_emp.csv - contains the number of employees who are about to retire 
+  * retiring_emp.csv - contains the number of employees who are about to retire 
   * retiring_emp_no_dup.csv - contains the number of employees who are about to retire after removing duplicates
   * retiring_emp_no_dup_count.csv - contains the number of employees who are about to retire grouped by title
+![retiring_emp_no_dup_count.png]()
 
   In technical analysis 2, To be eligible to participate in the mentorship program, employees will need to have a date of birth that falls between January 1, 1965 and December 31, 1965. I created a table containing employees who are eligible for the mentorship program using 2 inner joins(dept_emp and titles).I also checked for duplicates and removed them using partitioning after which I got a count of employees who are eligible for the mentorship program which is a total of 1,549 employees using the count function.
   
@@ -38,5 +39,6 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
   * mentorship_eligibility.csv - contains number of employees eligible for mentorship program
   * mentorship_eligibility_no_dup.csv - contains the number of employees eligible for mentorship program after I removed duplicates
   * mentorship_eligibility_no_dup_count.csv - contains number of employees eligible for mentorship program grouped by title
+![mentorship_eligibility_no_dup_count.png]()
 
  In conclusion, I will recommend Pewlett Hackard to start hiring and increase the age group for mentorship program as about 50% of their employees are about to retire and this mentorship program will help prep new hires to take over the open positions. Just employees born in 1965 might not be enough mentors to help these new hires.
