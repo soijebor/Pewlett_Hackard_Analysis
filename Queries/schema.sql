@@ -262,7 +262,7 @@ WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 	
 SELECT * FROM no_of_retiring_emp;
 
--- To get the count of retiring employee 
+-- Number of individuals retiring 
 SELECT COUNT(*) FROM no_of_retiring_emp;
 
 --Technial analysis 1b: Check for duplicates; Partition the data to show only most recent title per employee
@@ -288,7 +288,7 @@ ORDER BY emp_no;
 
 SELECT * FROM retiring_emp_no_dup;
 
--- Number of individuals retiring
+-- Number of individuals retiring excludes duplicates
 SELECT COUNT(*) FROM retiring_emp_no_dup;
 
 --Technial analysis 1c: Count the number of current reitiring employees by title
@@ -317,6 +317,9 @@ WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 	
 SELECT * FROM mentorship_eligibility;
 
+-- Number of individuals available for mentorship role
+SELECT COUNT(*) FROM mentorship_eligibility;
+
 -- Check for duplicates; Partition the data to show only most recent title per employee for Mentorship Eligibility
 SELECT emp_no,
 	first_name,
@@ -340,7 +343,7 @@ ORDER BY emp_no;
 
 SELECT * FROM mentorship_eligibility_no_dup;
 
---Number of individuals available for mentorship role
+--Number of individuals available for mentorship role excludes duplicates
 SELECT COUNT(*) FROM mentorship_eligibility_no_dup;
 
 --Count the number of mentorship eligibility  employees by title
