@@ -19,7 +19,8 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
 ## Summary
 
  A copy of the ERD I created when mapping out the database;
- ![ERD](
+ 
+ ![ERD](https://github.com/soijebor/Pewlett_Hackard_Analysis/blob/master/Images/EmployeeDB.png)
 
   I created a table containing the number of employees who are about to retire (those born 1952-1955), grouped by job title using 2 inner join(salaries, dept_no and titles). Checked for duplicates and then used partitioning to remove duplicates and show only most recent title per employee. I used the count function to get the number of employees and they're 72,458 employees who are about to retire(those born 1952-1955) using the count function. 
   
