@@ -249,7 +249,7 @@ SELECT e.emp_no,
 	ti.title,
 	s.salary,
 	ti.from_date
-INTO no_of_retiring_emp
+INTO retiring_emp
 FROM employees as e
 INNER JOIN salaries as s
 ON (e.emp_no = s.emp_no)
@@ -260,10 +260,10 @@ ON (e.emp_no = ti.emp_no)
 WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 	AND (de.to_date = '9999-01-01');
 	
-SELECT * FROM no_of_retiring_emp;
+SELECT * FROM retiring_emp;
 
 -- Number of individuals retiring 
-SELECT COUNT(*) FROM no_of_retiring_emp;
+SELECT COUNT(*) FROM retiring_emp;
 
 --Technial analysis 1b: Check for duplicates; Partition the data to show only most recent title per employee
 SELECT emp_no,
@@ -282,7 +282,7 @@ FROM
 	from_date, ROW_NUMBER() OVER
  (PARTITION BY (emp_no)
  ORDER BY from_date DESC) rn
- FROM no_of_retiring_emp
+ FROM retiring_emp
  ) tmp WHERE rn = 1
 ORDER BY emp_no;
 
