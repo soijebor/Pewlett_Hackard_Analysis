@@ -299,7 +299,6 @@ GROUP BY title;
 
 SELECT * FROM retiring_emp_no_dup_count;
 
-
 --Technical Analysis 2: Create table containing employees who are eligible for the mentorship program
 SELECT e.emp_no,
 	e.first_name,
