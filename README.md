@@ -27,9 +27,9 @@ An analysis on Pewlett Hackard to determine the total number of employees per ti
   
   In this analysis, I created a total of 3 tables and exportred them as csv files;
   
-  * no_of_retiring_emp.csv - containd
-  * retiring_emp_no_dup.csv
-  * retiring_emp_no_dup_count.csv
+  * no_of_retiring_emp.csv - contains the number of employees who are about to retire 
+  * retiring_emp_no_dup.csv - contains the number of employees who are about to retire after removing duplicates
+  * retiring_emp_no_dup_count.csv - contains the number of employees who are about to retire grouped by title
 
   In technical analysis 2, To be eligible to participate in the mentorship program, employees will need to have a date of birth that falls between January 1, 1965 and December 31, 1965. I created a table containing employees who are eligible for the mentorship program using 2 inner joins (dept_emp and titles).I also checked for duplicates and removed them using partitioning after which i got a count of employees who are eligible for the mentorship program which is a total of 1,549 employees using the count function.
   
