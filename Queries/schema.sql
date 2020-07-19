@@ -248,7 +248,7 @@ SELECT e.emp_no,
 	e.last_name,
 	ti.title,
 	s.salary,
-	s.from_date
+	ti.from_date
 INTO no_of_retiring_emp
 FROM employees as e
 INNER JOIN salaries as s
