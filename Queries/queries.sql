@@ -94,7 +94,7 @@ WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31';
 -- Retirement eligibility
 SELECT first_name, last_name
 FROM employees
-WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31');
 
 -- Retirement eligibility
 SELECT first_name, last_name
@@ -113,13 +113,6 @@ FROM employees
 WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
 
-SELECT first_name, last_name
-INTO retirement_info
-FROM employees
-WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
-
-SELECT * FROM retirement_info;
 
 -- Create new table for retiring employees
 SELECT emp_no, first_name, last_name
@@ -156,7 +149,7 @@ INTO current_emp
 FROM retirement_info as ri
 LEFT JOIN dept_emp as de
 ON ri.emp_no = de.emp_no
-WHERE de.to_date = ('9999-01-01')
+WHERE de.to_date = ('9999-01-01');
 
 -- Employee count by department number
 SELECT COUNT(ce.emp_no), de.dept_no
@@ -176,13 +169,6 @@ ORDER BY de.dept_no;
 
 SELECT * FROM department_number; 
 
-SELECT * FROM salaries
-ORDER BY to_date DESC;
-SELECT emp_no, first_name, last_name
-INTO retirement_info
-FROM employees
-WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
 
 SELECT e.emp_no,
 	e.first_name,
@@ -226,3 +212,134 @@ INNER JOIN dept_emp AS de
 ON (ce.emp_no = de.emp_no)
 INNER JOIN departments AS d
 ON (de.dept_no = d.dept_no);
+
+--Skill drill 7.3.6 question 1
+SELECT ce.emp_no,
+ce.first_name,
+ce.last_name,
+d.dept_name	
+INTO sales_dept_info
+FROM current_emp as ce
+INNER JOIN dept_emp AS de
+ON (ce.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no) AND (d.dept_name='Sales');
+
+SELECT * FROM current_emp;
+
+--Skill drill 7.3.6 question 2
+SELECT ce.emp_no,
+ce.first_name,
+ce.last_name,
+d.dept_name	
+INTO sales_development_info
+FROM current_emp as ce
+INNER JOIN dept_emp AS de
+ON (ce.emp_no = de.emp_no)
+INNER JOIN departments AS d
+ON (de.dept_no = d.dept_no)
+WHERE dept_name IN ('Sales', 'Development');
+
+
+-- Module 7 Challenge Begins
+--Creating a table for Number of Retiring Employees by Title
+SELECT e.emp_no,
+	e.first_name,
+	e.last_name,
+	ti.title,
+	s.salary,
+	s.from_date
+INTO no_of_retiring_emp_by_title
+FROM employees as e
+INNER JOIN salaries as s
+ON (e.emp_no = s.emp_no)
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+INNER JOIN titles as ti
+ON (e.emp_no = ti.emp_no)
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31');
+
+SELECT * FROM no_of_retiring_emp_by_title;
+
+-- Partition the data to show only most recent title per employee
+SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	salary,
+	from_date
+INTO recent_title_per_employee
+FROM 
+ (SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	salary,
+	from_date, ROW_NUMBER() OVER
+ (PARTITION BY (emp_no)
+ ORDER BY from_date DESC) rn
+ FROM no_of_retiring_emp_by_title
+ ) tmp WHERE rn = 1
+ORDER BY emp_no;
+
+SELECT * FROM  recent_title_per_employee;
+
+SELECT title, COUNT(*) FROM  recent_title_per_employee
+GROUP BY title;
+
+SELECT title, COUNT(*) as title_count
+INTO title_table_count
+FROM recent_title_per_employee
+GROUP BY title;
+
+SELECT * FROM title_table_count;
+
+-- Module 7 Challenge Deliverable 2
+SELECT e.emp_no,
+	e.first_name,
+	e.last_name,
+	ti.title,
+	ti.from_date,
+	ti.to_date
+INTO mentorship_eligibility
+FROM employees as e
+INNER JOIN dept_emp as de
+ON (e.emp_no = de.emp_no)
+INNER JOIN titles as ti
+ON (e.emp_no = ti.emp_no)
+WHERE (birth_date BETWEEN '1965-01-01' AND '1965-12-31');
+
+SELECT * FROM mentorship_eligibility;
+
+-- Partition the data to show only most recent title per employee for Mentorship Eligibility
+SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	from_date
+	to_date
+INTO mentorship_eligibility_part
+FROM
+ (SELECT emp_no,
+	first_name,
+	last_name,
+	title,
+	to_date
+  	from_date, ROW_NUMBER() OVER
+ (PARTITION BY (emp_no)
+ ORDER BY from_date DESC) rn
+ FROM mentorship_eligibility
+ ) tmp WHERE rn = 1
+ORDER BY emp_no;
+
+SELECT * FROM mentorship_eligibility_part;
+
+SELECT title, COUNT(*) FROM  mentorship_eligibility_part
+GROUP BY title;
+
+SELECT title, COUNT(*) as title_count
+INTO mentorship_eligibility_count
+FROM mentorship_eligibility_part
+GROUP BY title;
+
+SELECT * FROM mentorship_eligibility_count;

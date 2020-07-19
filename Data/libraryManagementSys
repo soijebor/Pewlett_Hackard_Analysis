@@ -1,4 +1,0 @@
---libraryManagementSystem
-create table User (
-	userId Serial Primary Key,
-)
